@@ -1,0 +1,53 @@
+spring:
+    datasource:
+        type: com.zaxxer.hikari.HikariDataSource
+        url: jdbc:h2:mem:esdemo;DB_CLOSE_DELAY=-1
+        name:
+        username: sa
+        password:
+    h2:
+        console:
+            enabled: false
+    jpa:
+        hibernate:
+            ddl-auto: none        
+        database-platform: org.hibernate.dialect.H2Dialect
+        database: H2
+        show-sql: false
+        properties:
+            hibernate.cache.use_second_level_cache: false
+            hibernate.cache.use_query_cache: false
+    data:
+        elasticsearch:
+            cluster-name:
+            cluster-nodes:
+            properties:
+                index:
+                    search:
+                        slowlog:
+                            threshold:
+                                query:
+                                    info: 1ms                 
+                path:
+                    logs: target/elasticsearch/log
+                    data: target/elasticsearch/data
+                http:
+                    enabled: true
+                  
+server:
+    port: 8080        
+    
+esdemo:
+    bootstrap:
+        enable: true    
+              
+logging:
+    level:
+        org:
+            elasticsearch:
+                index:
+                    search:
+                        slowlog:
+                            query: INFO
+                                                    
+                            
